@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BLACK FRIDAY - Boutique Populaire Maroc</title>
+  <meta name="description" content="Boutique Black Friday - Produits populaires au Maroc. Paiement via WhatsApp. Garantie satisfait ou remboursé." />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    /* ---------- Reset & Base ---------- */
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:#111; background:#f5f7fb;}
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:20px}
+
+    /* ---------- Header / Banner ---------- */
+    header{background:linear-gradient(90deg,#0b1226,#1b2a4a); color:#fff; padding:18px 0; position:sticky; top:0; z-index:40; box-shadow:0 4px 14px rgba(2,6,23,.25)}
+    .topbar{display:flex;align-items:center;justify-content:space-between; gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;color:#1b2a4a;font-weight:700}
+    .title{font-size:20px;font-weight:700}
+    .black-friday{background:#ff3b30;color:#fff;padding:6px 12px;border-radius:6px;font-weight:700;letter-spacing:.6px}
+
+    /* ---------- Hero ---------- */
+    .hero{display:flex;gap:20px;align-items:center;padding:28px 0}
+    .hero-left{flex:1}
+    .hero-right{width:260px; text-align:center}
+    .hero h1{margin:0;font-size:28px}
+    .hero p{color:#e6eefc; margin:12px 0 0}
+    .trust-badges{display:flex;gap:10px;margin-top:14px}
+    .badge{background:#fff;color:#0b1226;padding:8px 10px;border-radius:8px;font-weight:600;font-size:13px;box-shadow:0 6px 20px rgba(11,18,38,.08)}
+
+    /* ---------- Products Grid ---------- */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}
+    .card{background:#fff;border-radius:12px;padding:12px;box-shadow:0 8px 28px rgba(9,20,44,.06);display:flex;flex-direction:column;min-height:320px}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:8px;background:#eef2fb}
+    .card h3{margin:10px 0 6px;font-size:16px}
+    .desc{color:#555;font-size:13px;flex:1}
+    .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:8px}
+    .price{font-weight:800;font-size:16px}
+    .btn{background:#0b7cff;color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+    .btn.secondary{background:#fff;border:1px solid #dbe8ff;color:#0b7cff}
+    .small{font-size:12px;padding:6px 8px;border-radius:8px}
+
+    /* ---------- Cart panel ---------- */
+    .cart-panel{position:fixed;right:18px;bottom:18px;width:360px;max-width:92%;background:#fff;border-radius:12px;box-shadow:0 18px 48px rgba(3,12,36,.18);overflow:hidden}
+    .cart-header{background:linear-gradient(90deg,#0b7cff,#064ea3);color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between}
+    .cart-body{padding:12px;max-height:420px;overflow:auto}
+    .cart-item{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4ff}
+    .cart-item img{width:56px;height:56px;border-radius:8px;object-fit:cover}
+    .qty{display:flex;align-items:center;gap:6px}
+    .total-row{display:flex;align-items:center;justify-content:space-between;padding:12px;border-top:1px solid #f0f4ff;background:#fbfdff;font-weight:800}
+
+    /* ---------- Footer / Trust ---------- */
+    footer{margin-top:34px;padding:30px 0 60px}
+    .policy{display:flex;gap:14px;flex-wrap:wrap;color:#334; font-size:14px}
+    .policy .item{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 20px rgba(12,24,60,.04);min-width:220px}
+
+    /* ---------- Responsive tweaks ---------- */
+    @media (max-width:880px){
+      .hero{flex-direction:column;align-items:stretch}
+      .hero-right{width:100%}
+      .cart-panel{left:50%;transform:translateX(-50%);right:auto;bottom:12px;width:95%}
+    }
+
+    /* small helpers */
+    .muted{color:#6b7280;font-size:13px}
+    .green{color:#059669;font-weight:700}
+    .center{text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <div class="logo">BF</div>
+        <div>
+          <div class="title">BLACK FRIDAY - Boutique Populaire Maroc</div>
+          <div class="muted">Produits à succès — Paiement via WhatsApp • Livraison au Maroc</div>
+        </div>
+      </div>
+      <div class="black-friday">BLACK FRIDAY</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Offres spéciales — produits populaires au Maroc</h1>
+        <p style="margin-top:8px;color:#334">Sélection testée : électronique, accessoires, maison, beauté. Paiement simple via WhatsApp. +60 MAD sur chaque produit (frais et marge inclus).</p>
+        <div class="trust-badges" style="margin-top:12px">
+          <div class="badge">Livraison au Maroc</div>
+          <div class="badge">Paiement sécurisé via WhatsApp</div>
+          <div class="badge">Satisfait ou remboursé</div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="images/hero-placeholder.jpg" alt="BLACK FRIDAY" style="width:100%;border-radius:10px;box-shadow:0 10px 30px rgba(11,18,38,.08)" />
+        <div style="margin-top:10px;font-size:13px;color:#374151">Contact & Paiement rapide : <strong>WhatsApp</strong></div>
+        <button class="btn" style="margin-top:10px" onclick="scrollToProducts()">Voir les produits</button>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section>
+      <h2 style="margin:14px 0 6px">Nos produits les plus vendus</h2>
+      <div id="products" class="grid" aria-live="polite">
+        <!-- Cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- Footer / trust -->
+    <footer>
+      <div class="policy">
+        <div class="item">
+          <strong>Garantie</strong>
+          <p class="muted">Satisfait ou remboursé sous 14 jours. Conditions dans la page de commande.</p>
+        </div>
+        <div class="item">
+          <strong>Sécurité</strong>
+          <p class="muted">Vos données ne sont pas stockées. Les commandes passent par WhatsApp pour confirmer l'adresse et le paiement.</p>
+        </div>
+        <div class="item">
+          <strong>Support</strong>
+          <p class="muted">Contact WhatsApp : <a href="https://wa.me/212665290743" target="_blank" rel="noopener">0665290743</a></p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Cart panel -->
+  <aside id="cartPanel" class="cart-panel" aria-label="Panier">
+    <div class="cart-header">
+      <div style="display:flex;gap:10px;align-items:center">
+        <strong>Panier</strong>
+        <span id="cartCount" style="background:rgba(255,255,255,.16);padding:6px 8px;border-radius:8px;font-weight:700">0</span>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn secondary small" onclick="clearCart()">Vider</button>
+        <button class="btn small" onclick="checkout()">Commander</button>
+      </div>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="muted center">Votre panier est vide</div>
+    </div>
+    <div class="total-row">
+      <div>Total</div>
+      <div id="cartTotal">0 MAD</div>
+    </div>
+  </aside>
+
+  <script>
+    /***** CONFIG *****/
+    // REMARQUE : Remplace le numéro WhatsApp ci-dessous si nécessaire.
+    // Le numéro doit être en format international sans +, sans 0 initial pour wa.me (ex: 212665290743)
+    const WHATSAPP_NUMBER = "212665290743"; // 0665290743 -> +212 665290743
+
+    // Liste des produits (20). Remplace les images par tes images dans le dossier images/
+    const products = [
+      {id:1, name:"Écouteurs sans fil (True Wireless)", desc:"Son clair, autonomie longue.", basePrice:120, img:"images/product1.jpg"},
+      {id:2, name:"Montre connectée (Smartwatch)", desc:"Notifications, suivi sportif.", basePrice:200, img:"images/product2.jpg"},
+      {id:3, name:"Powerbank 10000mAh", desc:"Recharge rapide pour téléphone.", basePrice:100, img:"images/product3.jpg"},
+      {id:4, name:"Coque téléphone premium", desc:"Protection solide et design.", basePrice:30, img:"images/product4.jpg"},
+      {id:5, name:"Câble USB-C rapide", desc:"Charge et transfert rapides.", basePrice:20, img:"images/product5.jpg"},
+      {id:6, name:"Bande LED RGB", desc:"Éclairage décoratif pour maison.", basePrice:50, img:"images/product6.jpg"},
+      {id:7, name:"Mini blender portable", desc:"Smoothies en déplacement.", basePrice:140, img:"images/product7.jpg"},
+      {id:8, name:"Lunettes de soleil tendance", desc:"Style et protection UV.", basePrice:80, img:"images/product8.jpg"},
+      {id:9, name:"Sac à dos antivol", desc:"Pour ordinateur et voyage.", basePrice:200, img:"images/product9.jpg"},
+      {id:10, name:"Tondeuse cheveux professionnelle", desc:"Utilisation domestique facile.", basePrice:150, img:"images/product10.jpg"},
+      {id:11, name:"Brosse à dents électrique", desc:"Nettoyage profond.", basePrice:180, img:"images/product11.jpg"},
+      {id:12, name:"Chargeur sans fil", desc:"Pratique et rapide.", basePrice:90, img:"images/product12.jpg"},
+      {id:13, name:"Souris gaming", desc:"Haute précision.", basePrice:150, img:"images/product13.jpg"},
+      {id:14, name:"Perche selfie Bluetooth", desc:"Parfaite pour vidéos.", basePrice:40, img:"images/product14.jpg"},
+      {id:15, name:"Support voiture magnétique", desc:"Stable et pratique.", basePrice:60, img:"images/product15.jpg"},
+      {id:16, name:"Éplucheur multi-fonction (cuisine)", desc:"Rapide et pratique.", basePrice:35, img:"images/product16.jpg"},
+      {id:17, name:"Moniteur bébé compact", desc:"Audio/vidéo pour bébé.", basePrice:400, img:"images/product17.jpg"},
+      {id:18, name:"Aspirateur portable", desc:"Nettoyage voiture & maison.", basePrice:220, img:"images/product18.jpg"},
+      {id:19, name:"Lampe de bureau LED", desc:"Luminosité réglable.", basePrice:130, img:"images/product19.jpg"},
+      {id:20, name:"Rouleau de soin visage (dermaroller)", desc:"Routine beauté.", basePrice:70, img:"images/product20.jpg"},
+      // Ajoute plus d'objets si tu veux
+    ];
+
+    // Marge fixe: +60 MAD sur chaque produit
+    const MARKUP = 60;
+
+    /***** STATE: panier *****/
+    let cart = JSON.parse(localStorage.getItem('shop_cart_v1') || "[]");
+
+    /***** Fonctions utilitaires *****/
+    function formatMAD(n){
+      return n.toLocaleString('fr-FR') + " MAD";
+    }
+
+    function finalPrice(base){
+      return base + MARKUP;
+    }
+
+    /***** Rendu produits *****/
+    const productsContainer = document.getElementById('products');
+    function renderProducts(){
+      productsContainer.innerHTML = "";
+      products.forEach(p => {
+        const card = document.createElement('article');
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" onerror="this.src='images/placeholder.png'">
+          <h3>${p.name}</h3>
+          <div class="desc">${p.desc}</div>
+          <div class="price-row">
+            <div>
+              <div class="muted">Prix de base : <small>${formatMAD(p.basePrice)}</small></div>
+              <div class="price">${formatMAD(finalPrice(p.basePrice))}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+              <button class="btn" onclick="addToCart(${p.id})">Ajouter</button>
+              <button class="btn secondary small" onclick="quickWhats(${p.id})">Commander (WhatsApp)</button>
+            </div>
+          </div>
+        `;
+        productsContainer.appendChild(card);
+      });
+    }
+
+    /***** Panier: fonctions *****/
+    function saveCart(){
+      localStorage.setItem('shop_cart_v1', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function addToCart(productId){
+      const prod = products.find(p=>p.id===productId);
+      if(!prod) return;
+      const found = cart.find(c=>c.id===productId);
+      if(found) found.qty++;
+      else cart.push({id:prod.id, name:prod.name, price: finalPrice(prod.basePrice), qty:1});
+      saveCart();
+      toast("Ajouté au panier");
+    }
+
+    function removeFromCart(productId){
+      cart = cart.filter(c=>c.id!==productId);
+      saveCart();
+    }
+
+    function changeQty(productId, delta){
+      const item = cart.find(c=>c.id===productId);
+      if(!item) return;
+      item.qty += delta;
+      if(item.qty < 1) removeFromCart(productId);
+      saveCart();
+    }
+
+    function clearCart(){
+      if(!confirm("Vider le panier ?")) return;
+      cart = [];
+      saveCart();
+    }
+
+    function cartTotal(){
+      return cart.reduce((s,i)=>s + i.price * i.qty, 0);
+    }
+
+    function renderCart(){
+      const cartBody = document.getElementById('cartBody');
+      const cartCount = document.getElementById('cartCount');
+      const cartTotalEl = document.getElementById('cartTotal');
+      cartCount.textContent = cart.reduce((s,i)=>s+i.qty,0);
+      cartTotalEl.textContent = formatMAD(cartTotal());
+      cartBody.innerHTML = "";
+      if(cart.length === 0){
+        cartBody.innerHTML = `<div class="muted center">Votre panier est vide</div>`;
+        return;
+      }
+      cart.forEach(item => {
+        const row = document.createElement('div');
+        row.className = "cart-item";
+        row.innerHTML = `
+          <img src="images/${slug(item.name)}.jpg" alt="${item.name}" onerror="this.src='images/placeholder.png'">
+          <div style="flex:1">
+            <div style="font-weight:700">${item.name}</div>
+            <div class="muted" style="font-size:13px">${formatMAD(item.price)} x ${item.qty}</div>
+            <div style="margin-top:8px;display:flex;gap:6px;align-items:center">
+              <div class="qty">
+                <button class="btn secondary small" onclick="changeQty(${item.id},-1)">-</button>
+                <div style="min-width:28px;text-align:center">${item.qty}</div>
+                <button class="btn secondary small" onclick="changeQty(${item.id},1)">+</button>
+              </div>
+              <button class="btn small" style="background:#ff4d4f;color:#fff;border:none" onclick="removeFromCart(${item.id})">Supprimer</button>
+            </div>
+          </div>
+        `;
+        cartBody.appendChild(row);
+      });
+    }
+
+    function slug(text){
+      return text.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+    }
+
+    /***** Checkout via WhatsApp *****/
+    function checkout(){
+      if(cart.length===0){
+        alert("Le panier est vide.");
+        return;
+      }
+      // Demande adresse + nom via prompt (simple) — tu peux remplacer par formulaire.
+      const customerName = prompt("Nom complet pour la commande (ex: Mohamed) :");
+      if(customerName === null) return;
+      const address = prompt("Adresse de livraison (ville + rue) :");
+      if(address === null) return;
+
+      const lines = [];
+      lines.push("Nouvelle commande - BLACK FRIDAY");
+      lines.push("Nom : " + customerName);
+      lines.push("Adresse : " + address);
+      lines.push("");
+      lines.push("Produits :");
+      cart.forEach(it => {
+        lines.push(`- ${it.name} x${it.qty} — ${formatMAD(it.price * it.qty)}`);
+      });
+      lines.push("");
+      lines.push("Total : " + formatMAD(cartTotal()));
+      lines.push("");
+      lines.push("Méthode de paiement : WhatsApp / Cash à la livraison / À confirmer");
+      lines.push("Merci !");
+
+      const message = encodeURIComponent(lines.join("\n"));
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+      window.open(url, "_blank");
+    }
+
+    // Quick order single product via WhatsApp
+    function quickWhats(productId){
+      const prod = products.find(p=>p.id===productId);
+      if(!prod) return;
+      const qty = parseInt(prompt(`Quantité pour "${prod.name}" :`, "1"));
+      if(!qty || qty < 1) return;
+      const total = finalPrice(prod.basePrice) * qty;
+      const msg = encodeURIComponent(
+        `Commande rapide\nProduit: ${prod.name}\nQuantité: ${qty}\nPrix total: ${total} MAD\nNom: \nAdresse: \nMerci`
+      );
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+      window.open(url, "_blank");
+    }
+
+    function scrollToProducts(){ window.scrollTo({top: document.querySelector('#products').offsetTop - 20, behavior:'smooth'}) }
+
+    // Simple toast
+    function toast(text){
+      const t = document.createElement('div');
+      t.style.position="fixed";t.style.left="50%";t.style.transform="translateX(-50%)";t.style.bottom="24px";
+      t.style.background="rgba(7,27,54,.94)";t.style.color="#fff";t.style.padding="10px 14px";t.style.borderRadius="10px";
+      t.style.zIndex=9999;t.style.boxShadow="0 8px 30px rgba(3,9,28,.4)";t.style.fontWeight=700;
+      t.textContent=text;document.body.appendChild(t);
+      setTimeout(()=>{t.style.transition="all .4s";t.style.opacity=0;t.style.bottom="8px"},1600);
+      setTimeout(()=>t.remove(),2200);
+    }
+
+    // initial render
+    renderProducts();
+    renderCart();
+
+    // expose some for debugging (optional)
+    window.addToCart = addToCart;
+    window.clearCart = clearCart;
+    window.checkout = checkout;
+    window.quickWhats = quickWhats;
+  </script>
+</body>
+</html>
