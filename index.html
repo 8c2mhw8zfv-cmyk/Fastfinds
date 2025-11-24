@@ -38,6 +38,7 @@
     .desc{color:#555;font-size:13px;flex:1}
     .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:8px}
     .price{font-weight:800;font-size:16px}
+    .old{ text-decoration:line-through; color:#888; font-size:14px; }
     .btn{background:#0b7cff;color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
     .btn.secondary{background:#fff;border:1px solid #dbe8ff;color:#0b7cff}
     .small{font-size:12px;padding:6px 8px;border-radius:8px}
@@ -87,7 +88,7 @@
     <section class="hero">
       <div class="hero-left">
         <h1>Offres spéciales — produits populaires au Maroc</h1>
-        <p style="margin-top:8px;color:#334">Sélection testée : électronique, accessoires, maison, beauté. Paiement simple via WhatsApp. +60 MAD sur chaque produit (frais et marge inclus).</p>
+        <p style="margin-top:8px;color:#334">Sélection testée : électronique, accessoires, maison, beauté. Paiement simple via WhatsApp. Prix final = prix de base + 60 MAD.</p>
         <div class="trust-badges" style="margin-top:12px">
           <div class="badge">Livraison au Maroc</div>
           <div class="badge">Paiement sécurisé via WhatsApp</div>
@@ -97,7 +98,6 @@
       <div class="hero-right">
         <img src="images/hero-placeholder.jpg" alt="BLACK FRIDAY" style="width:100%;border-radius:10px;box-shadow:0 10px 30px rgba(11,18,38,.08)" />
         <div style="margin-top:10px;font-size:13px;color:#374151">Contact & Paiement rapide : <strong>WhatsApp</strong></div>
-        <button class="btn" style="margin-top:10px" onclick="scrollToProducts()">Voir les produits</button>
       </div>
     </section>
 
@@ -105,7 +105,7 @@
     <section>
       <h2 style="margin:14px 0 6px">Nos produits les plus vendus</h2>
       <div id="products" class="grid" aria-live="polite">
-        <!-- Cards injected by JS -->
+        <!-- Cards injectées par JS -->
       </div>
     </section>
 
@@ -150,56 +150,43 @@
   </aside>
 
   <script>
-    /***** CONFIG *****/
-    // REMARQUE : Remplace le numéro WhatsApp ci-dessous si nécessaire.
-    // Le numéro doit être en format international sans +, sans 0 initial pour wa.me (ex: 212665290743)
-    const WHATSAPP_NUMBER = "212665290743"; // 0665290743 -> +212 665290743
+    const WHATSAPP_NUMBER = "212665290743";
+    const MARKUP = 60; // prix final = base + 60 MAD
+    const EXTRA_OLD = 50; // prix barré = prix final + 50 MAD
 
-    // Liste des produits (20). Remplace les images par tes images dans le dossier images/
     const products = [
-      {id:1, name:"Écouteurs sans fil (True Wireless)", desc:"Son clair, autonomie longue.", basePrice:200, img:"images/product1.jpg"},
-      {id:2, name:"Montre connectée (Smartwatch)", desc:"Notifications, suivi sportif.", basePrice:300, img:"images/product2.jpg"},
-      {id:3, name:"Powerbank 10000mAh", desc:"Recharge rapide pour téléphone.", basePrice:300, img:"images/product3.jpg"},
-      {id:4, name:"Coque téléphone premium", desc:"Protection solide et design.", basePrice:120, img:"images/product4.jpg"},
-      {id:5, name:"Câble USB-C rapide", desc:"Charge et transfert rapides.", basePrice:120, img:"images/product5.jpg"},
-      {id:6, name:"Bande LED RGB", desc:"Éclairage décoratif pour maison.", basePrice:150, img:"images/product6.jpg"},
-      {id:7, name:"Mini blender portable", desc:"Smoothies en déplacement.", basePrice:240, img:"images/product7.jpg"},
-      {id:8, name:"Lunettes de soleil tendance", desc:"Style et protection UV.", basePrice:180, img:"images/product8.jpg"},
-      {id:9, name:"Sac à dos antivol", desc:"Pour ordinateur et voyage.", basePrice:290, img:"images/product9.jpg"},
-      {id:10, name:"Tondeuse cheveux professionnelle", desc:"Utilisation domestique facile.", basePrice:150, img:"images/product10.jpg"},
-      {id:11, name:"Brosse à dents électrique", desc:"Nettoyage profond.", basePrice:290, img:"images/product11.jpg"},
-      {id:12, name:"Chargeur sans fil", desc:"Pratique et rapide.", basePrice:190, img:"images/product12.jpg"},
-      {id:13, name:"Souris gaming", desc:"Haute précision.", basePrice:250, img:"images/product13.jpg"},
-      {id:14, name:"Perche selfie Bluetooth", desc:"Parfaite pour vidéos.", basePrice:140, img:"images/product14.jpg"},
-      {id:15, name:"Support voiture magnétique", desc:"Stable et pratique.", basePrice:160, img:"images/product15.jpg"},
-      {id:16, name:"Éplucheur multi-fonction (cuisine)", desc:"Rapide et pratique.", basePrice:120, img:"images/product16.jpg"},
-      {id:17, name:"Moniteur bébé compact", desc:"Audio/vidéo pour bébé.", basePrice:500, img:"images/product17.jpg"},
-      {id:18, name:"Aspirateur portable", desc:"Nettoyage voiture & maison.", basePrice:310, img:"images/product18.jpg"},
-      {id:19, name:"Lampe de bureau LED", desc:"Luminosité réglable.", basePrice:230, img:"images/product19.jpg"},
-      {id:20, name:"Rouleau de soin visage (dermaroller)", desc:"Routine beauté.", basePrice:160, img:"images/product20.jpg"},
-      // Ajoute plus d'objets si tu veux
+      {id:1, name:"Écouteurs sans fil", desc:"Son clair, autonomie longue.", basePrice:50, img:"images/product1.jpg"},
+      {id:2, name:"Montre connectée", desc:"Notifications, suivi sportif.", basePrice:50, img:"images/product2.jpg"},
+      {id:3, name:"Powerbank 10000mAh", desc:"Recharge rapide pour téléphone.", basePrice:50, img:"images/product3.jpg"},
+      {id:4, name:"Coque téléphone premium", desc:"Protection solide et design.", basePrice:50, img:"images/product4.jpg"},
+      {id:5, name:"Câble USB-C rapide", desc:"Charge et transfert rapides.", basePrice:50, img:"images/product5.jpg"},
+      {id:6, name:"Bande LED RGB", desc:"Éclairage décoratif pour maison.", basePrice:50, img:"images/product6.jpg"},
+      {id:7, name:"Mini blender portable", desc:"Smoothies en déplacement.", basePrice:50, img:"images/product7.jpg"},
+      {id:8, name:"Lunettes de soleil tendance", desc:"Style et protection UV.", basePrice:50, img:"images/product8.jpg"},
+      {id:9, name:"Sac à dos antivol", desc:"Pour ordinateur et voyage.", basePrice:50, img:"images/product9.jpg"},
+      {id:10, name:"Tondeuse cheveux professionnelle", desc:"Utilisation domestique facile.", basePrice:50, img:"images/product10.jpg"},
+      {id:11, name:"Brosse à dents électrique", desc:"Nettoyage profond.", basePrice:50, img:"images/product11.jpg"},
+      {id:12, name:"Chargeur sans fil", desc:"Pratique et rapide.", basePrice:50, img:"images/product12.jpg"},
+      {id:13, name:"Souris gaming", desc:"Haute précision.", basePrice:50, img:"images/product13.jpg"},
+      {id:14, name:"Perche selfie Bluetooth", desc:"Parfaite pour vidéos.", basePrice:50, img:"images/product14.jpg"},
+      {id:15, name:"Support voiture magnétique", desc:"Stable et pratique.", basePrice:50, img:"images/product15.jpg"},
+      {id:16, name:"Éplucheur multi-fonction", desc:"Rapide et pratique.", basePrice:50, img:"images/product16.jpg"},
+      {id:17, name:"Moniteur bébé compact", desc:"Audio/vidéo pour bébé.", basePrice:50, img:"images/product17.jpg"},
+      {id:18, name:"Aspirateur portable", desc:"Nettoyage voiture & maison.", basePrice:50, img:"images/product18.jpg"},
+      {id:19, name:"Lampe de bureau LED", desc:"Luminosité réglable.", basePrice:50, img:"images/product19.jpg"},
+      {id:20, name:"Rouleau dermaroller visage", desc:"Routine beauté.", basePrice:50, img:"images/product20.jpg"}
     ];
 
-    // Marge fixe: -60 MAD sur chaque produit
-    const MARKUP = 60;
-
-    /***** STATE: panier *****/
     let cart = JSON.parse(localStorage.getItem('shop_cart_v1') || "[]");
 
-    /***** Fonctions utilitaires *****/
-    function formatMAD(n){
-      return n.toLocaleString('fr-FR') - " MAD";
-    }
+    function formatMAD(n){ return n.toLocaleString('fr-FR') + " MAD"; }
+    function finalPrice(base){ return base + MARKUP; }
+    function oldPrice(base){ return finalPrice(base) + EXTRA_OLD; }
 
-    function finalPrice(base){
-      return base - MARKUP;
-    }
-
-    /***** Rendu produits *****/
-    const productsContainer = document.getElementById('products');
     function renderProducts(){
-      productsContainer.innerHTML = "";
-      products.forEach(p => {
+      const container = document.getElementById('products');
+      container.innerHTML = "";
+      products.forEach(p=>{
         const card = document.createElement('article');
         card.className = "card";
         card.innerHTML = `
@@ -207,164 +194,64 @@
           <h3>${p.name}</h3>
           <div class="desc">${p.desc}</div>
           <div class="price-row">
-            <div>
-              <div class="muted">Prix de base : <small>${formatMAD(p.basePrice)}</small></div>
-              <div class="price">${formatMAD(finalPrice(p.basePrice))}</div>
+            <div class="price">
+              <span class="old">${formatMAD(oldPrice(p.basePrice))}</span>
+              <span class="new">${formatMAD(finalPrice(p.basePrice))}</span>
             </div>
-            <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-              <button class="btn" onclick="addToCart(${p.id})">Ajouter</button>
-              <button class="btn secondary small" onclick="quickWhats(${p.id})">Commander (WhatsApp)</button>
-            </div>
+            <button class="btn" onclick="addToCart(${p.id})">Ajouter</button>
           </div>
         `;
-        productsContainer.appendChild(card);
+        container.appendChild(card);
       });
     }
 
-    /***** Panier: fonctions *****/
-    function saveCart(){
-      localStorage.setItem('shop_cart_v1', JSON.stringify(cart));
-      renderCart();
-    }
+    function saveCart(){ localStorage.setItem('shop_cart_v1', JSON.stringify(cart)); renderCart(); }
 
     function addToCart(productId){
       const prod = products.find(p=>p.id===productId);
       if(!prod) return;
       const found = cart.find(c=>c.id===productId);
       if(found) found.qty++;
-      else cart.push({id:prod.id, name:prod.name, price: finalPrice(prod.basePrice), qty:1});
-      saveCart();
-      toast("Ajouté au panier");
-    }
-
-    function removeFromCart(productId){
-      cart = cart.filter(c=>c.id!==productId);
+      else cart.push({id:prod.id,name:prod.name,price:finalPrice(prod.basePrice),qty:1});
       saveCart();
     }
 
-    function changeQty(productId, delta){
-      const item = cart.find(c=>c.id===productId);
-      if(!item) return;
-      item.qty += delta;
-      if(item.qty < 1) removeFromCart(productId);
-      saveCart();
-    }
-
-    function clearCart(){
-      if(!confirm("Vider le panier ?")) return;
-      cart = [];
-      saveCart();
-    }
-
-    function cartTotal(){
-      return cart.reduce((s,i)=>s + i.price * i.qty, 0);
-    }
+    function removeFromCart(id){ cart = cart.filter(c=>c.id!==id); saveCart(); }
+    function clearCart(){ if(confirm("Vider le panier ?")){ cart=[]; saveCart(); } }
+    function cartTotal(){ return cart.reduce((s,i)=>s+i.price*i.qty,0); }
 
     function renderCart(){
-      const cartBody = document.getElementById('cartBody');
-      const cartCount = document.getElementById('cartCount');
-      const cartTotalEl = document.getElementById('cartTotal');
-      cartCount.textContent = cart.reduce((s,i)=>s+i.qty,0);
-      cartTotalEl.textContent = formatMAD(cartTotal());
-      cartBody.innerHTML = "";
-      if(cart.length === 0){
-        cartBody.innerHTML = `<div class="muted center">Votre panier est vide</div>`;
-        return;
-      }
-      cart.forEach(item => {
-        const row = document.createElement('div');
-        row.className = "cart-item";
-        row.innerHTML = `
-          <img src="images/${slug(item.name)}.jpg" alt="${item.name}" onerror="this.src='images/placeholder.png'">
-          <div style="flex:1">
-            <div style="font-weight:700">${item.name}</div>
-            <div class="muted" style="font-size:13px">${formatMAD(item.price)} x ${item.qty}</div>
-            <div style="margin-top:8px;display:flex;gap:6px;align-items:center">
-              <div class="qty">
-                <button class="btn secondary small" onclick="changeQty(${item.id},-1)">-</button>
-                <div style="min-width:28px;text-align:center">${item.qty}</div>
-                <button class="btn secondary small" onclick="changeQty(${item.id},1)">+</button>
-              </div>
-              <button class="btn small" style="background:#ff4d4f;color:#fff;border:none" onclick="removeFromCart(${item.id})">Supprimer</button>
-            </div>
-          </div>
-        `;
-        cartBody.appendChild(row);
+      const body=document.getElementById('cartBody');
+      const count=document.getElementById('cartCount');
+      const total=document.getElementById('cartTotal');
+      count.textContent = cart.reduce((s,i)=>s+i.qty,0);
+      total.textContent = formatMAD(cartTotal());
+      body.innerHTML="";
+      if(cart.length===0){body.innerHTML='<div class="muted center">Votre panier est vide</div>';return;}
+      cart.forEach(i=>{
+        const row=document.createElement('div');
+        row.className="cart-item";
+        row.innerHTML=`<div style="flex:1">${i.name} x${i.qty} - ${formatMAD(i.price*i.qty)}
+        <button class="btn small" style="background:#ff4d4f;color:#fff;border:none" onclick="removeFromCart(${i.id})">Supprimer</button></div>`;
+        body.appendChild(row);
       });
     }
 
-    function slug(text){
-      return text.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
-    }
-
-    /***** Checkout via WhatsApp *****/
     function checkout(){
-      if(cart.length===0){
-        alert("Le panier est vide.");
-        return;
-      }
-      // Demande adresse + nom via prompt (simple) — tu peux remplacer par formulaire.
-      const customerName = prompt("Nom complet pour la commande (ex: Mohamed) :");
-      if(customerName === null) return;
-      const address = prompt("Adresse de livraison (ville + rue) :");
-      if(address === null) return;
-
-      const lines = [];
-      lines.push("Nouvelle commande - BLACK FRIDAY");
-      lines.push("Nom : " + customerName);
-      lines.push("Adresse : " + address);
-      lines.push("");
-      lines.push("Produits :");
-      cart.forEach(it => {
-        lines.push(`- ${it.name} x${it.qty} — ${formatMAD(it.price * it.qty)}`);
-      });
-      lines.push("");
-      lines.push("Total : " + formatMAD(cartTotal()));
-      lines.push("");
-      lines.push("Méthode de paiement : WhatsApp / Cash à la livraison / À confirmer");
-      lines.push("Merci !");
-
-      const message = encodeURIComponent(lines.join("\n"));
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-      window.open(url, "_blank");
+      if(cart.length===0){alert("Le panier est vide."); return;}
+      const name=prompt("Nom complet :");
+      if(!name) return;
+      const address=prompt("Adresse :");
+      if(!address) return;
+      const lines=["Nouvelle commande - BLACK FRIDAY","Nom: "+name,"Adresse: "+address,"Produits:"];
+      cart.forEach(i=>lines.push(`- ${i.name} x${i.qty} — ${formatMAD(i.price*i.qty)}`));
+      lines.push("Total: "+formatMAD(cartTotal()),"Merci !");
+      const url="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(lines.join("\n"));
+      window.open(url,"_blank");
     }
 
-    // Quick order single product via WhatsApp
-    function quickWhats(productId){
-      const prod = products.find(p=>p.id===productId);
-      if(!prod) return;
-      const qty = parseInt(prompt(`Quantité pour "${prod.name}" :`, "1"));
-      if(!qty || qty < 1) return;
-      const total = finalPrice(prod.basePrice) * qty;
-      const msg = encodeURIComponent(
-        `Commande rapide\nProduit: ${prod.name}\nQuantité: ${qty}\nPrix total: ${total} MAD\nNom: \nAdresse: \nMerci`
-      );
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
-      window.open(url, "_blank");
-    }
-
-    function scrollToProducts(){ window.scrollTo({top: document.querySelector('#products').offsetTop - 20, behavior:'smooth'}) }
-
-    // Simple toast
-    function toast(text){
-      const t = document.createElement('div');
-      t.style.position="fixed";t.style.left="50%";t.style.transform="translateX(-50%)";t.style.bottom="24px";
-      t.style.background="rgba(7,27,54,.94)";t.style.color="#fff";t.style.padding="10px 14px";t.style.borderRadius="10px";
-      t.style.zIndex=9999;t.style.boxShadow="0 8px 30px rgba(3,9,28,.4)";t.style.fontWeight=700;
-      t.textContent=text;document.body.appendChild(t);
-      setTimeout(()=>{t.style.transition="all .4s";t.style.opacity=0;t.style.bottom="8px"},1600);
-      setTimeout(()=>t.remove(),2200);
-    }
-
-    // initial render
     renderProducts();
     renderCart();
-
-    // expose some for debugging (optional)
-    window.addToCart = addToCart;
-    window.clearCart = clearCart;
-    window.checkout = checkout;
-    window.quickWhats = quickWhats;
   </script>
 </body>
 </html>
