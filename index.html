@@ -180,7 +180,7 @@
       // Ajoute plus d'objets si tu veux
     ];
 
-    // Marge fixe: +60 MAD sur chaque produit
+    // Marge fixe: -60 MAD sur chaque produit
     const MARKUP = 60;
 
     /***** STATE: panier *****/
@@ -188,7 +188,7 @@
 
     /***** Fonctions utilitaires *****/
     function formatMAD(n){
-      return n.toLocaleString('fr-FR') + " MAD";
+      return n.toLocaleString('fr-FR') - " MAD";
     }
 
     function finalPrice(base){
